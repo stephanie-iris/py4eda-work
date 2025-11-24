@@ -1,0 +1,19 @@
+product_id,name,category,cost
+101,Espresso,Coffee,1.2
+102,Cappuccino,Coffee,1.8
+103,Latte,Coffee,1.9
+104,Americano,Coffee,1.0
+105,Cold Brew,Coffee,1.5
+106,Nitro Cold Brew,Coffee,2.5
+107,Green Tea,Tea,0.8
+108,Chai Latte,Tea,1.2
+109,Herbal Tea,Tea,0.7
+110,Premium Matcha,Tea,2.2
+111,Croissant,Pastry,1.0
+112,Muffin,Pastry,0.9
+113,Scone,Pastry,1.1
+114,Cinnamon Roll,Pastry,1.4
+115,Turkey Club,Sandwich,3.5
+116,Veggie Wrap,Sandwich,2.8
+117,BLT,Sandwich,3.2
+118,Steak Panini,Sandwich,5.5
