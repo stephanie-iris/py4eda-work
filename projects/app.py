@@ -7,10 +7,10 @@ st.set_page_config(page_title="Arizona Grassland Ecohydrology Dashboard", layout
 
 st.title("🌵 Arizona Grassland Ecohydrology Dashboard")
 st.markdown("""
-This dashboard visualizes monthly ecohydrological conditions from the  
-**AmeriFlux US-SRG (Santa Rita Grassland)** site, merged with **OpenET** satellite evapotranspiration estimates.
+This dashboard visualizes monthly ecohydrological conditions from the **AmeriFlux US-SRG (Santa Rita Grassland)** site,
+merged with **OpenET** satellite evapotranspiration estimates.
 
-Use the controls below to filter the time window and select variables to analyze.
+Use the sidebar controls to select the time window and variables to analyze.
 """)
 
 # Load data
