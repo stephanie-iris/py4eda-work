@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from core import load_data, plot_time_series
+from core import load_data, plot_time_series, plot_correlation, compute_correlation
 
 # Initial configuration of the Dashboard
 st.set_page_config(page_title="Arizona Grassland Ecohydrology Dashboard", layout="wide")
