@@ -24,67 +24,60 @@ pretty_names = {
     "ET_mm_month": "Evapotranspiration (mm/month)"
 }
 
-def plot_time_series(df, variables):
+def plot_time_series(df, primary_var, secondary_var):
     
     fig, ax1 = plt.subplots(figsize=(12, 6))
     ax2 = ax1.twinx()
 
     # Colors
-    colors = sns.color_palette("tab10", len(variables))
-    first_var = variables[0]
+    colors = sns.color_palette("tab10", 2))
 
-    if first_var == "Rain_mm":
+    if primary_var == "Rain_mm":
         ax1.bar(
             df["Date"],
-            df[first_var],
+            df[primary_var],
             color=colors[0],
             alpha=0.35,
             width=20,
-            label=pretty_names[first_var]
+            label=pretty_names[primary_var]
         )
     else:
         sns.lineplot(
             data=df,
             x="Date",
-            y=first_var,
+            y=primary_var,
             ax=ax1,
-            label=pretty_names[first_var],
+            label=pretty_names[primary_var],
             color=colors[0]
         )
 
-    ax1.set_ylabel(pretty_names[first_var])
+    ax1.set_ylabel(pretty_names[primary_var])
 
-    secondary_vars = variables[1:]
-
-    for i, var in enumerate(secondary_vars, start=1):
-
-        if var == "Rain_mm":
+    if secondary_var != "None":      
+        
+        if secondary_var == "Rain_mm":
             ax2.bar(
                 df["Date"],
-                df[var],
-                color=colors[i],
+                df[secondary_var],
+                color=colors[1],
                 alpha=0.3,
                 width=20,
-                label=pretty_names[var]
+                label=pretty_names[secondary_var]
             )
         else:
             sns.lineplot(
                 data=df,
                 x="Date",
-                y=var,
+                y=secondary_var,
                 ax=ax2,
-                label=pretty_names[var],
-                color=colors[i]
+                label=pretty_names[secondary_var],
+                color=colors[1]
             )
 
-    # Dynamic label for secondary axis
-    if len(secondary_vars) == 1:
-        ax2.set_ylabel(pretty_names[secondary_vars[0]])
-    elif len(secondary_vars) > 1:
-        ax2.set_ylabel("Secondary variables")
+        ax2.set_ylabel(pretty_names[secondary_var])
     else:
-        ax2.set_ylabel("")
-
+        ax2.set_ylabel("")    # empty without Y2
+ 
     # Merge legends
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
