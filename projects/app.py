@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from core import load_data, plot_time_series, plot_correlation, compute_correlation
+from core import load_data, plot_time_series, plot_correlation, compute_correlation, plot_corr_matrix
 
 # Initial configuration of the Dashboard
 st.set_page_config(page_title="Arizona Grassland Ecohydrology Dashboard", layout="wide")
@@ -91,3 +91,11 @@ else:
         `r = {corr_value:.3f}`
         """
     )
+
+
+show_matrix = st.checkbox("Show full Pearson correlation matrix")
+
+if show_matrix:
+    st.subheader("📊 Correlation Matrix (optional)")
+    fig_corr = plot_corr_matrix(df_filtered)
+    st.pyplot(fig_corr)

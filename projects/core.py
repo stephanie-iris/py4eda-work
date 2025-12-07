@@ -4,6 +4,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+sns.set_theme(
+    style="whitegrid",
+    font_scale=1.2,      
+    rc={
+        "axes.titlesize": 18,
+        "axes.labelsize": 14,
+        "legend.fontsize": 12,
+        "xtick.labelsize": 12,
+        "ytick.labelsize": 12
+    }
+)
 
 def load_data():
     df = pd.read_pickle("./projects/data/processed/US_SRG_merged_clean.pkl")
@@ -98,7 +109,7 @@ def plot_time_series(df, primary_var, secondary_var):
 
 def plot_correlation(df, var_x, var_y):
     # Create figure
-    fig, ax = plt.subplots(figsize=(8, 6))
+    fig, ax = plt.subplots(figsize=(12, 6))
 
     # Scatter + regression line
     sns.regplot(
@@ -124,3 +135,22 @@ def compute_correlation(df, var_x, var_y):
     corr_value = df[[var_x, var_y]].corr().iloc[0, 1]
     return corr_value
 
+def plot_corr_matrix(df):
+    # Compute correlation matrix (drop Date)
+    corr_matrix = df.drop("Date", axis=1).corr()
+
+    # Create figure
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    # Heatmap
+    sns.heatmap(
+        corr_matrix,
+        annot=True,
+        cmap="Spectral",
+        fmt=".2f",
+        ax=ax
+    )
+
+    ax.set_title("Pearson Correlation Matrix")
+    fig.tight_layout()
+    return fig
