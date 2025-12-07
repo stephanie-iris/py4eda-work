@@ -35,14 +35,14 @@ pretty_choices = {
 pretty_to_key = {v: k for k, v in pretty_choices.items()}
 
 # Primary Y-axis
-y1_var = st.sidebar.selectbox(
+y1_pretty = st.sidebar.selectbox(
     "Primary Y-axis variable:",
     list(pretty_choices.values())
 )
 y1_var = pretty_to_key[y1_pretty]
 
 # Secondary Y-axis
-y2_var = st.sidebar.selectbox(
+y2_pretty = st.sidebar.selectbox(
     "Secondary Y-axis variable:",
     ["None"] + list(pretty_choices.values())
 )
