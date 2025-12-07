@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.set_theme(
-    style="whitegrid",
+    style="white",
     font_scale=1.2,      
     rc={
         "axes.titlesize": 18,
@@ -138,6 +138,10 @@ def compute_correlation(df, var_x, var_y):
 def plot_corr_matrix(df):
     # Compute correlation matrix (drop Date)
     corr_matrix = df.drop("Date", axis=1).corr()
+
+    # Replace column names with pretty names
+    corr_matrix.index = [pretty_names[c] for c in corr_matrix.index]
+    corr_matrix.columns = [pretty_names[c] for c in corr_matrix.columns]
 
     # Create figure
     fig, ax = plt.subplots(figsize=(12, 6))

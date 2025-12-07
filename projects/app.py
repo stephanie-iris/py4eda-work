@@ -93,9 +93,9 @@ else:
     )
 
 
-show_matrix = st.checkbox("Show full Pearson correlation matrix")
+show_matrix = st.sidebar.checkbox("Show full Pearson correlation matrix")
 
 if show_matrix:
-    st.subheader("📊 Correlation Matrix (optional)")
+    st.subheader("📊 Pearson Correlation Matrix)")
     fig_corr = plot_corr_matrix(df_filtered)
     st.pyplot(fig_corr)
