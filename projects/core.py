@@ -6,7 +6,7 @@ import seaborn as sns
 
 
 def load_data():
-    df = pd.read_pickle("./data/processed/US_SRG_merged_clean.pkl")
+    df = pd.read_pickle("./projects/data/processed/US_SRG_merged_clean.pkl")
     # garantir que Date é datetime
     df["Date"] = pd.to_datetime(df["Date"])
     return df
