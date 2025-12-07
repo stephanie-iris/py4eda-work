@@ -32,22 +32,21 @@ pretty_choices = {
     "ET_mm_month": "Evapotranspiration (mm/month)"
 }
 
-# List of variable keys
-var_options = list(pretty_choices.keys())
+pretty_to_key = {v: k for k, v in pretty_choices.items()}
 
 # Primary Y-axis
 y1_var = st.sidebar.selectbox(
     "Primary Y-axis variable:",
-    var_options,
-    index=0
+    list(pretty_choices.values())
 )
+y1_var = pretty_to_key[y1_pretty]
 
 # Secondary Y-axis
 y2_var = st.sidebar.selectbox(
     "Secondary Y-axis variable:",
-    var_options,
-    index=1
+    ["None"] + list(pretty_choices.values())
 )
+y2_var = pretty_to_key[y2_pretty] if y2_pretty != "None" else "None"
 
 # Time filter
 min_year = int(df["Date"].dt.year.min())
@@ -69,4 +68,4 @@ df_filtered = df[(df["Date"].dt.year >= year_range[0]) &
 st.subheader("📈 Time Series of Selected Variables")
 
 fig = plot_time_series(df_filtered, y1_var, y2_var)
-st.plotly_chart(fig, use_container_width=True)
+st.pyplot(fig)

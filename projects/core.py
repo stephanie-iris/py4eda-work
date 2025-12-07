@@ -30,7 +30,7 @@ def plot_time_series(df, primary_var, secondary_var):
     ax2 = ax1.twinx()
 
     # Colors
-    colors = sns.color_palette("tab10", 2))
+    colors = sns.color_palette("tab10", 2)
 
     if primary_var == "Rain_mm":
         ax1.bar(
