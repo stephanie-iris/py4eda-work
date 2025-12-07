@@ -110,11 +110,11 @@ def plot_correlation(df, var_x, var_y):
     )
 
     # Axis labels using pretty names
-    ax.set_xlabel(pretty_choices[var_x])
-    ax.set_ylabel(pretty_choices[var_y])
+    ax.set_xlabel(pretty_names[var_x])
+    ax.set_ylabel(pretty_names[var_y])
 
     # Title
-    ax.set_title(f"Relationship Between {pretty_choices[var_x]} and {pretty_choices[var_y]}")
+    ax.set_title(f"Relationship Between {pretty_names[var_x]} and {pretty_names[var_y]}")
 
     fig.tight_layout()
     return fig
