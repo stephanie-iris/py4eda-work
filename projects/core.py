@@ -77,7 +77,11 @@ def plot_time_series(df, primary_var, secondary_var):
         ax2.set_ylabel(pretty_names[secondary_var])
     else:
         ax2.set_ylabel("")    # empty without Y2
- 
+    
+    # REMOVE secondary-axis legend (fix)
+    if ax2.get_legend() is not None:
+        ax2.get_legend().remove()
+
     # Merge legends
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
@@ -91,3 +95,32 @@ def plot_time_series(df, primary_var, secondary_var):
     ax1.set_title("Ecohydrological Variables Over Time")
     fig.tight_layout()
     return fig
+
+def plot_correlation(df, var_x, var_y):
+    # Create figure
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Scatter + regression line
+    sns.regplot(
+        data=df,
+        x=var_x,
+        y=var_y,
+        scatter_kws={"alpha": 0.4},
+        ax=ax
+    )
+
+    # Axis labels using pretty names
+    ax.set_xlabel(pretty_choices[var_x])
+    ax.set_ylabel(pretty_choices[var_y])
+
+    # Title
+    ax.set_title(f"Relationship Between {pretty_choices[var_x]} and {pretty_choices[var_y]}")
+
+    fig.tight_layout()
+    return fig
+
+def compute_correlation(df, var_x, var_y):
+    # Compute Pearson correlation
+    corr_value = df[[var_x, var_y]].corr().iloc[0, 1]
+    return corr_value
+

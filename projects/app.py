@@ -69,3 +69,25 @@ st.subheader("📈 Time Series of Selected Variables")
 
 fig = plot_time_series(df_filtered, y1_var, y2_var)
 st.pyplot(fig)
+
+
+st.subheader("🔍 Relationship Between Selected Variables")
+
+# Prevent None in secondary axis
+if y2_var == "None":
+    st.info("Select a secondary variable to compute correlation.")
+else:
+    # Plot correlation graph
+    corr_fig = plot_correlation(df_filtered, y1_var, y2_var)
+    st.pyplot(corr_fig)
+
+    # Compute correlation
+    corr_value = compute_correlation(df_filtered, y1_var, y2_var)
+
+    # Print correlation text
+    st.markdown(
+        f"""
+        **Pearson correlation between {pretty_choices[y1_var]} and {pretty_choices[y2_var]}:**  
+        `r = {corr_value:.3f}`
+        """
+    )
